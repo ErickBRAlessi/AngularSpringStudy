@@ -12,6 +12,7 @@ import spring.api.courses.converter.CourseConverter;
 import spring.api.courses.model.Course;
 import spring.api.courses.service.ICourseService;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -27,7 +28,7 @@ public class CourseController {
     }
 
     @PostMapping("/courses")
-    public ResponseEntity<CourseDTO> insertCourse(@RequestBody CourseDTO courseDTO){
+    public ResponseEntity<CourseDTO> insertCourse(@Valid @RequestBody CourseDTO courseDTO){
         Course course = courseService.insert(CourseConverter.convert(courseDTO));
         return ResponseEntity.ok().body(CourseConverter.convert(course));
     }
